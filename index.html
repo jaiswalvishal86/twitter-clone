@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" type="image/png" href="assets/favicon.png" />
+    <title>Twitter Clone | Search Trends</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/tweets.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c939d0e917.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"
+        integrity="sha256-L3S3EDEk31HcLA5C6T2ovHvOcD80+fgqaCDt2BAi92o=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container home-page">
+        <div class="navigation-container">
+            <div class="navigation">
+                <div class="logo"> <i class="fab fa-2x fa-twitter"></i></div>
+                <div class="home-link"> <i class="fas fa-home"></i></div>
+                <div class="profile-container">
+                    <div class="profile"></div>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div id="spinner"></div>
+            <div class="search-tweets-container"> <input type="text" placeholder="Search Tweets" id="user-search-input"
+                    onkeyup="onEnter(event)" /> <i class="fas fa-search fa-flip-horizontal"
+                    onclick="getTwitterData()"></i></div>
+            <div class="tweet-list">
+                <div class="twitter-welcome-message">
+                    <h3>Welcome to Twitter Clone!</h3>
+                    <p>Use the search box above to see what's happening around the world.</p>
+                </div>
+            </div>
+            <div class="next-page-container" id="next-page" onclick="onNextPage()">
+                <div id="spinner-bottom"></div> <i class="fas fa-arrow-down"></i>
+            </div>
+        </div>
+        <div class="trends-sidebar-container">
+            <div class="trends-sidebar">
+                <div class="trending-trends">
+                    <h5>Trends for you</h5>
+                    <ul>
+                        <li onclick="selectTrend(this)">#Coding</li>
+                        <li onclick="selectTrend(this)">#JavaScript</li>
+                        <li onclick="selectTrend(this)">#Python</li>
+                        <li onclick="selectTrend(this)">#Programming</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
