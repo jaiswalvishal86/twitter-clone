@@ -1,5 +1,4 @@
-const URL =
-  "https://twitter-node-api-backend.herokuapp.com/tweets";
+const URL = "https://localhost:3000/tweets";
 
 let nextPageUrl = null;
 
