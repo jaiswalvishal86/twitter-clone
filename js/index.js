@@ -1,4 +1,5 @@
-const URL = "https://localhost:3000/tweets";
+const URL =
+  "https://twitter-node-api-backend.herokuapp.com/tweets";
 
 let nextPageUrl = null;
 
@@ -11,7 +12,9 @@ const onEnter = (e) => {
 const onNextPage = () => {
   if (nextPageUrl) {
     let loaderBottom = `<div id="spinner-bottom" class="show"></div>`;
-    document.querySelector(".next-page-container").innerHTML = loaderBottom;
+    document.querySelector(
+      ".next-page-container"
+    ).innerHTML = loaderBottom;
     getTwitterData(true);
   }
 };
@@ -20,7 +23,8 @@ const onNextPage = () => {
  * Retrive Twitter Data from API
  */
 const getTwitterData = (nextPage = false) => {
-  const query = document.getElementById("user-search-input").value;
+  const query = document.getElementById("user-search-input")
+    .value;
   if (!query) return;
   const encodedQuery = encodeURIComponent(query);
   let fullUrl = `${URL}?q=${encodedQuery}&count=10`;
@@ -28,7 +32,9 @@ const getTwitterData = (nextPage = false) => {
     fullUrl = nextPageUrl;
   } else {
     let loader = `<div id="spinner" class="show"></div>`;
-    document.querySelector(".tweet-list").innerHTML = loader;
+    document.querySelector(
+      ".tweet-list"
+    ).innerHTML = loader;
   }
   try {
     fetch(fullUrl)
@@ -71,11 +77,17 @@ const selectTrend = (e) => {
 const nextPageButtonVisibility = (metadata) => {
   if (metadata.next_results) {
     const bottomArrow = `<i class="fas fa-arrow-down"></i>`;
-    document.getElementById("next-page").style.visibility = "visible";
-    document.getElementById("spinner-bottom").style.visibility = "hidden";
-    document.getElementById("next-page").innerHTML = bottomArrow;
+    document.getElementById("next-page").style.visibility =
+      "visible";
+    document.getElementById(
+      "spinner-bottom"
+    ).style.visibility = "hidden";
+    document.getElementById(
+      "next-page"
+    ).innerHTML = bottomArrow;
   } else {
-    document.getElementById("next-page").style.visibility = "hidden";
+    document.getElementById("next-page").style.visibility =
+      "hidden";
   }
 };
 
@@ -96,12 +108,24 @@ const buildTweets = (tweets, nextPage) => {
                     <div class="tweet-user-username">@${tweet.user.screen_name}</div>
                 </div>
             </div>
+          
             `;
-    if (tweet.extended_entities && tweet.extended_entities.media.length > 0) {
-      twitterContent += buildImages(tweet.extended_entities.media);
-      twitterContent += buildVideo(tweet.extended_entities.media);
+    if (
+      tweet.extended_entities &&
+      tweet.extended_entities.media.length > 0
+    ) {
+      twitterContent += buildImages(
+        tweet.extended_entities.media
+      );
+      twitterContent += buildVideo(
+        tweet.extended_entities.media
+      );
     }
     twitterContent += `
+     <a
+      href="http://www.twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}"
+      target="_blank" style="text-decoration: none; color: inherit"
+    >
             <div class="tweet-text-container">
                 ${tweet.full_text}
             </div>
@@ -109,6 +133,7 @@ const buildTweets = (tweets, nextPage) => {
                 ${createdDate}
             </div>
         </div>
+        </a>
 `;
   });
   if (nextPage) {
@@ -116,7 +141,9 @@ const buildTweets = (tweets, nextPage) => {
       .querySelector(".tweet-list")
       .insertAdjacentHTML("beforeend", twitterContent);
   } else {
-    document.querySelector(".tweet-list").innerHTML = twitterContent;
+    document.querySelector(
+      ".tweet-list"
+    ).innerHTML = twitterContent;
   }
 };
 
